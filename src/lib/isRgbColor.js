@@ -27,8 +27,9 @@ export default function isRgbColor(str, options) {
     if (!startsWithRgb.test(str)) {
       return false;
     }
-    // strip all whitespace
-    str = str.replace(/\s/g, '');
+
+    // Remove whitespace around parentheses and commas, preserving it inside values.
+    str = str.replace(/\s*([(),])\s*/g, '$1');
   }
 
   if (!includePercentValues) {
